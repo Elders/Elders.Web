@@ -1,3 +1,6 @@
+#### 0.1.3 - 01.06.2015
+* Republish prev version: Added organizations. Added List<Guid> support
+
 #### 0.1.2 - 01.06.2015
 * Added organizations.
 
