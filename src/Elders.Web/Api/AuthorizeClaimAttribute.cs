@@ -53,6 +53,11 @@ namespace Elders.Web.Api
                     return new ValidationResult(string.Format("The parameter value does not match the claim value. Parameter '{0}' : '{1}' | Claim '{2}' : '{3}'", validationContext.MemberName, value, ClaimTypes, claim.Value));
                 member.SetValue(validationContext.ObjectInstance, Guid.Parse(claim.Value));
             }
+            else if (member.PropertyType == typeof(List<Guid>))
+            {
+                var values = claim.Value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => Guid.Parse(x));
+                member.SetValue(validationContext.ObjectInstance, values);
+            }
             else if (member.PropertyType == typeof(string))
             {
                 if (ReferenceEquals(null, value) == false && !claim.Value.Equals(value))
