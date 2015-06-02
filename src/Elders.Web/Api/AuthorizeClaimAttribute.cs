@@ -55,7 +55,7 @@ namespace Elders.Web.Api
             }
             else if (member.PropertyType == typeof(List<Guid>))
             {
-                var values = claim.Value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => Guid.Parse(x));
+                var values = claim.Value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => Guid.Parse(x)).ToList();
                 member.SetValue(validationContext.ObjectInstance, values);
             }
             else if (member.PropertyType == typeof(string))
