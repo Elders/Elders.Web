@@ -1,3 +1,6 @@
+#### 0.1.5 - 02.06.2015
+* When building the model from json we are now triggering the model validation.
+
 #### 0.1.4 - 02.06.2015
 * Now handling multipart request validation. 
 

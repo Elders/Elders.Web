@@ -36,9 +36,13 @@ namespace Elders.Web.Api
 
     public static class HttpControllerSerializerExtensions
     {
-        public static T Deserialize<T>(this ApiController self, string json)
+        public static T BuildModel<T>(this ApiController self, string json)
         {
-            return JsonConvert.DeserializeObject<T>(json, self.Configuration.Formatters.JsonFormatter.SerializerSettings);
+            var obj = JsonConvert.DeserializeObject<T>(json, self.Configuration.Formatters.JsonFormatter.SerializerSettings);
+            self.Validate(obj);
+            if (!self.ModelState.IsValid)
+                throw new System.Web.HttpException(400, "Bad request");
+            return obj;
         }
     }
 }
