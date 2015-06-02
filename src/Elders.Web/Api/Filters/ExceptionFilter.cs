@@ -9,8 +9,9 @@ using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Owin;
+using Elders.Web.Api;
 
-namespace Elders.Web.Api.Filters
+namespace Elders.Web.api.filters
 {
     public class ErrorConverter : JsonConverter
     {
@@ -68,8 +69,12 @@ namespace Elders.Web.Api.Filters
         {
             var request = actionExecutedContext.Request.ToString();
             var exception = actionExecutedContext.Exception;
-            var response = new ResponseResult(exception.AsString());
-            var errorResponse = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            HttpResponseMessage errorResponse;
+
+            if (!actionExecutedContext.ActionContext.ModelState.IsValid)
+                errorResponse = actionExecutedContext.Request.CreateResponse(HttpStatusCode.BadRequest, new ResponseResult(actionExecutedContext.ActionContext.ModelState.GetErrorMessages()));
+            else
+                errorResponse = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError, new ResponseResult(exception.AsString()));
 
             log.Error("[RequestError]" + actionExecutedContext.Request.AsString(actionExecutedContext.ActionContext.ModelState), exception);
             actionExecutedContext.Response = errorResponse;

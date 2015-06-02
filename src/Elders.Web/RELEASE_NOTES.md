@@ -1,3 +1,6 @@
+#### 0.1.4 - 02.06.2015
+* Now handling multipart request validation. 
+
 #### 0.1.3 - 01.06.2015
 * Republish prev version: Added organizations. Added List<Guid> support
 
