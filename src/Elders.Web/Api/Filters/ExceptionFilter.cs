@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Owin;
 using Elders.Web.Api;
 
-namespace Elders.Web.api.filters
+namespace Elders.Web.Api.Filters
 {
     public class ErrorConverter : JsonConverter
     {

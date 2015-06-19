@@ -1,3 +1,7 @@
+#### 0.1.7 - 19.06.2015
+* Added GeneratedAttribute
+* Fixed namespace: Elders.Web.Api.Filters
+
 #### 0.1.6 - 02.06.2015
 * Fixed issue when value is List<Guid>
 
