@@ -1,3 +1,6 @@
+#### 0.1.8 - 19.06.2015
+* Now logging additional information when there is a HttpError
+
 #### 0.1.7 - 19.06.2015
 * Added GeneratedAttribute
 * Fixed namespace: Elders.Web.Api.Filters

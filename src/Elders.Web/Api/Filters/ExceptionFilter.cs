@@ -22,7 +22,6 @@ namespace Elders.Web.Api.Filters
             var casted = value as HttpError;
             var ctx = HttpContext.Current.Request.GetOwinContext();
 
-
             var response = new ResponseResult(casted.Message + casted.MessageDetail);
 
             log.Error("[RequestError]" + GetString(casted, ctx));
@@ -56,7 +55,23 @@ namespace Elders.Web.Api.Filters
                     sb.Append(item.Key + ": " + value);
                 }
             }
+            if (error.ModelState != null)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append(JsonConvert.SerializeObject(error.ModelState));
+            }
 
+            sb.Append(Environment.NewLine);
+            sb.Append("ExeceptionType: " + error.ExceptionType);
+            sb.Append(Environment.NewLine);
+            sb.Append("ExeceptionMessage: " + error.ExceptionMessage);
+            if (error.InnerException != null)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append("InnerExeceptionType: " + error.InnerException.ExceptionType);
+                sb.Append(Environment.NewLine);
+                sb.Append("InnerExeceptionMessage: " + error.InnerException.ExceptionMessage);
+            }
             return sb.ToString();
         }
     }
