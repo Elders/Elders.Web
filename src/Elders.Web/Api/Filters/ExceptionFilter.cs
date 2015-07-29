@@ -62,6 +62,8 @@ namespace Elders.Web.Api.Filters
             }
 
             sb.Append(Environment.NewLine);
+            sb.Append("Message: " + error.Message);
+            sb.Append(Environment.NewLine);
             sb.Append("ExeceptionType: " + error.ExceptionType);
             sb.Append(Environment.NewLine);
             sb.Append("ExeceptionMessage: " + error.ExceptionMessage);

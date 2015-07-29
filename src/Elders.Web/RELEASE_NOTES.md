@@ -1,3 +1,6 @@
+#### 0.1.9 - 29.07.2015
+* Now logging the message of HttpError in ErrorConverter
+
 #### 0.1.8 - 19.06.2015
 * Now logging additional information when there is a HttpError
 
