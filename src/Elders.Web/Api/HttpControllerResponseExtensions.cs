@@ -32,6 +32,11 @@ namespace Elders.Web.Api
         {
             return new ResponseMessageResult(self.Request.CreateResponse(HttpStatusCode.NotAcceptable, data));
         }
+
+        public static IHttpActionResult Forbidden<T>(this ApiController self, T data)
+        {
+            return new ResponseMessageResult(self.Request.CreateResponse(HttpStatusCode.Forbidden, data));
+        }
     }
 
     public static class HttpControllerSerializerExtensions

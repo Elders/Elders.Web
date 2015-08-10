@@ -1,3 +1,6 @@
+#### 0.1.10 - 10.08.2015
+* Added Forbidden to HttpControllerResponseExtensions
+
 #### 0.1.9 - 29.07.2015
 * Now logging the message of HttpError in ErrorConverter
 
