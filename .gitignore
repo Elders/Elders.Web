@@ -15,8 +15,8 @@ release.cmd
 ##############################################################
 
 # Ignore most popular binaries in Windows
-*.exe
-*.dll
+.exe
+.dll
 
 # Roslyn stuff
 *.sln.ide
@@ -238,3 +238,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Directories which start with '.'
+**/.*/
