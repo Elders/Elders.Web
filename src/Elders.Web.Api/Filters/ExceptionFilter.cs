@@ -2,29 +2,38 @@
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using System.Web.Http.ModelBinding;
+using Elders.Web.Api.Logging;
+using Microsoft.Owin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Microsoft.Owin;
-using Elders.Web.Api;
 
 namespace Elders.Web.Api.Filters
 {
     public class ErrorConverter : JsonConverter
     {
-        public static log4net.ILog log = log4net.LogManager.GetLogger(typeof(ErrorConverter));
+        static readonly ILog log = LogProvider.GetLogger(typeof(ErrorConverter));
+
+        readonly Func<IOwinContext> getOwinContext;
+
+        public ErrorConverter(Func<IOwinContext> getOwinContext)
+        {
+            if (getOwinContext == null)
+                throw new ArgumentNullException(nameof(getOwinContext));
+
+            this.getOwinContext = getOwinContext;
+        }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var casted = value as HttpError;
-            var ctx = HttpContext.Current.Request.GetOwinContext();
+            var ctx = getOwinContext();
 
             var response = new ResponseResult(casted.Message + casted.MessageDetail);
 
-            log.Error("[RequestError]" + GetString(casted, ctx));
+            log.Error(() => "[RequestError]" + GetString(casted, ctx));
 
             var jObject = JObject.FromObject(response, serializer);
             jObject.WriteTo(writer);
@@ -80,7 +89,7 @@ namespace Elders.Web.Api.Filters
 
     public class ExceptionFilter : ExceptionFilterAttribute
     {
-        public static log4net.ILog log = log4net.LogManager.GetLogger(typeof(ExceptionFilter));
+        static readonly ILog log = LogProvider.GetLogger(typeof(ExceptionFilter));
 
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
@@ -93,7 +102,7 @@ namespace Elders.Web.Api.Filters
             else
                 errorResponse = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError, new ResponseResult(exception.AsString()));
 
-            log.Error("[RequestError]" + actionExecutedContext.Request.AsString(actionExecutedContext.ActionContext.ModelState), exception);
+            log.ErrorException("[RequestError]" + actionExecutedContext.Request.AsString(actionExecutedContext.ActionContext.ModelState), exception);
             actionExecutedContext.Response = errorResponse;
         }
     }
