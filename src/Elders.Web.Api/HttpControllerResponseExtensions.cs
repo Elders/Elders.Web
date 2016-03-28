@@ -45,8 +45,8 @@ namespace Elders.Web.Api
         {
             var obj = JsonConvert.DeserializeObject<T>(json, self.Configuration.Formatters.JsonFormatter.SerializerSettings);
             self.Validate(obj);
-            if (!self.ModelState.IsValid)
-                throw new System.Web.HttpException(400, "Bad request");
+            if (self.ModelState.IsValid == false)
+                throw new HttpResponseException(self.Request.CreateResponse(HttpStatusCode.BadRequest, self.ModelState));
             return obj;
         }
     }

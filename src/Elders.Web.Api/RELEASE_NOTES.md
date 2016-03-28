@@ -1,3 +1,6 @@
+#### 0.2.0 - 28.03.2016
+* Introduce classes for Read/Response examples => RExample
+
 #### 0.1.10 - 10.08.2015
 * Added Forbidden to HttpControllerResponseExtensions
 
