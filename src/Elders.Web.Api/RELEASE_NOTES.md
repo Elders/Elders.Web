@@ -1,3 +1,6 @@
+#### 0.2.1 - 31.03.2016
+* Target .Net4.5
+
 #### 0.2.0 - 28.03.2016
 * Introduce classes for Read/Response examples => RExample
 
