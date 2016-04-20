@@ -187,7 +187,7 @@ namespace Elders.Web.Api
                 }
 
             }
-            if (!hasAdminScope && !hasAdminScope)
+            if (!hasAdminScope && !hasOwnerScope)
             {
                 var message = "An 'admin' or 'owner' scope is required for this request. Owner scope is usually issued for ROClients and Admin scope is usually issued for B2B Clients. For further details contact your administrator";
                 var responseMessage = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, new ResponseResult(message));

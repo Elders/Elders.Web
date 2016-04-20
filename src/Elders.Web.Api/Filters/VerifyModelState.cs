@@ -10,6 +10,18 @@ namespace Elders.Web.Api.Filters
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            if (actionContext.Request.Method == HttpMethod.Post || actionContext.Request.Method == HttpMethod.Put)
+            {
+                var contentLength = actionContext.Request.Content.Headers.ContentLength;
+                if (contentLength.HasValue == false || contentLength.Value == 0)
+                {
+                    var errorResult = new ResponseResult<string>("", "Missing body!");
+                    var e = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest, errorResult);
+                    actionContext.Response = e;
+                    return;
+                }
+            }
+
             var modelState = actionContext.ModelState;
             if (!modelState.IsValid)
             {

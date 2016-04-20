@@ -5,6 +5,14 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elders.Web.Api", "Elders.Web.Api\Elders.Web.Api.csproj", "{3068AFDA-EFAF-4AAD-BF53-7EC29FB957A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{3E1E2747-3E65-4AC8-A65F-8A9ED14A6887}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.cmd = ..\build.cmd
+		Elders.Web.Api\Elders.Web.Api.nuspec = Elders.Web.Api\Elders.Web.Api.nuspec
+		..\release-local.cmd = ..\release-local.cmd
+		Elders.Web.Api\RELEASE_NOTES.md = Elders.Web.Api\RELEASE_NOTES.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

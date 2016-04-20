@@ -1,3 +1,7 @@
+#### 0.2.2 - 20.04.2016
+* VerifyModelState checks for empty body when doing POST or PUT.
+* Ability to specify RExample for specific response code.
+
 #### 0.2.1 - 31.03.2016
 * Target .Net4.5
 

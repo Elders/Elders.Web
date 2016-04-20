@@ -74,6 +74,7 @@
     <Compile Include="RExamples\IProvideRExamplesFor.cs" />
     <Compile Include="RExamples\IRExample.cs" />
     <Compile Include="RExamples\RExample.cs" />
+    <Compile Include="RExamples\StatusRExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
