@@ -1,3 +1,6 @@
+#### 0.2.3 - 21.11.2016
+* Writes the full error to the log
+
 #### 0.2.2 - 20.04.2016
 * VerifyModelState checks for empty body when doing POST or PUT.
 * Ability to specify RExample for specific response code.
@@ -28,7 +31,7 @@
 * When building the model from json we are now triggering the model validation.
 
 #### 0.1.4 - 02.06.2015
-* Now handling multipart request validation. 
+* Now handling multipart request validation.
 
 #### 0.1.3 - 01.06.2015
 * Republish prev version: Added organizations. Added List<Guid> support

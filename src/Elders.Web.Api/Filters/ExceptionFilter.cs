@@ -83,6 +83,11 @@ namespace Elders.Web.Api.Filters
                 sb.Append(Environment.NewLine);
                 sb.Append("InnerExeceptionMessage: " + error.InnerException.ExceptionMessage);
             }
+            foreach (var errorDetails in error)
+            {
+                sb.AppendLine();
+                sb.Append(errorDetails.ToString());
+            }
             return sb.ToString();
         }
     }
