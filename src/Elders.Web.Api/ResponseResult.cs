@@ -40,6 +40,8 @@ namespace Elders.Web.Api
 
     public class ResponseResult<T> : ResponseResult
     {
+        public ResponseResult() { }
+
         public ResponseResult(T result)
         {
             Result = result;

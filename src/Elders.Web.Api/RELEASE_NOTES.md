@@ -1,3 +1,6 @@
+#### 0.2.4 - 09.05.2017
+* Add public parameterless constructor to ResponseResult generic class for deserialization
+
 #### 0.2.3 - 21.11.2016
 * Writes the full error to the log
 
