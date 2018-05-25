@@ -1,3 +1,6 @@
+#### 0.2.5 - 25.05.2018
+* Add override for Accept without exposing HttpResponseHeaders
+
 #### 0.2.4 - 09.05.2017
 * Add public parameterless constructor to ResponseResult generic class for deserialization
 
