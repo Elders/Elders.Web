@@ -20,11 +20,19 @@ namespace Elders.Web.Api
             return new ResponseMessageResult(self.Request.CreateResponse(HttpStatusCode.UnsupportedMediaType, data));
         }
 
-        public static IHttpActionResult Accepted<T>(this ApiController self, T data, Action<HttpResponseHeaders> headers = null)
+        public static IHttpActionResult Accepted<T>(this ApiController self, T data)
         {
+            return new ResponseMessageResult(self.Request.CreateResponse(HttpStatusCode.Accepted, data));
+        }
+
+        public static IHttpActionResult Accepted<T>(this ApiController self, T data, Action<HttpResponseHeaders> headers)
+        {
+            if (ReferenceEquals(null, headers)) throw new ArgumentNullException(nameof(headers));
+
             var response = self.Request.CreateResponse(HttpStatusCode.Accepted, data);
-            if (headers != null)
-                headers(response.Headers);
+
+            headers(response.Headers);
+
             return new ResponseMessageResult(response);
         }
 
